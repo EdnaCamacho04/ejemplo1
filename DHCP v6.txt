@@ -1,0 +1,25 @@
+ena
+config t
+hostname DHCP
+ipv6 unicast-routing
+ipv6 dhcp pool VLAN1
+dns-server 2001:DB8:1:1::1234
+
+ipv6 unicast-routing
+ipv6 dhcp pool VLAN2
+dns-server 2001:DB8:2:1::1234
+
+int gig0/0.10
+ipv6 add 2001:Db8:CAFE:10::1/64
+ipv6 add FE80::1 link-local
+ipv6 dhcp server VLAN1
+ipv6 nd other-config-flag
+no shut
+exit
+int gig0/0.20
+ipv6 add 2001:Db8:CAFE:20::1/64
+ipv6 add FE80::1 link-local
+ipv6 dhcp server VLAN2
+ipv6 nd other-config-flag
+no shut
+
